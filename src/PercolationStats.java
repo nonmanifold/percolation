@@ -49,7 +49,7 @@ public class PercolationStats {
             int row = canBeBloked[siteToFillIdx][0];
             int col = canBeBloked[siteToFillIdx][1];
 
-            //swap used element outside of working set:
+            // swap used element outside of working set:
             canBeBloked[siteToFillIdx] = canBeBloked[canBeBlokedCount - 1];
             canBeBlokedCount--; // move pointer to the working set far end
             perc.open(row, col);
