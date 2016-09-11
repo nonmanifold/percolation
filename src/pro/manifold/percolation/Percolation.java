@@ -12,6 +12,7 @@ public class Percolation {
     private static final int[][] DIRECTIONS = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     private final int size1D;
 
+    // create n-by-n grid, with all sites blocked
     public Percolation(int n) {
         if (n <= 0) {
             throw new java.lang.IllegalArgumentException("n must be at least 1");
@@ -24,6 +25,7 @@ public class Percolation {
         bottomVirtualSite = xyTo1D(size, size) + 1;
     }
 
+    // open site (row i, column j) if it is not open already
     public void open(int row, int col) {
         validate(row, col);
         final int xy = xyTo1D(col, row);
@@ -42,14 +44,17 @@ public class Percolation {
         }
     }
 
+    // does the system percolate?
     public boolean percolates() {
         return sites.connected(topVirtualSite, bottomVirtualSite);
     }
 
+    // is site (row i, column j) full?
     public boolean isFull(int row, int col) {
         return sites.connected(topVirtualSite, xyTo1D(col, row));
     }
 
+    // is site (row i, column j) open?
     public boolean isOpen(int row, int col) {
         return opened[xyTo1D(col, row)];
     }
