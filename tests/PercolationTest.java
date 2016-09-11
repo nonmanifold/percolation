@@ -40,6 +40,12 @@ public class PercolationTest {
         Percolation perc = new Percolation(1);
         perc.open(10, 1);
     }
+    @Test
+    public void throwWhenIsFullOutsideRows() throws Exception {
+        thrown.expect(IndexOutOfBoundsException.class);
+        Percolation perc = new Percolation(1);
+        perc.isFull(10, 1);
+    }
 
     @Test
     public void simplePercolation1() throws Exception {

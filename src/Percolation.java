@@ -49,11 +49,13 @@ public class Percolation {
 
     // is site (row i, column j) full?
     public boolean isFull(int row, int col) {
+        validate(row, col);
         return sites.connected(topVirtualSite, xyTo1D(col, row));
     }
 
     // is site (row i, column j) open?
     public boolean isOpen(int row, int col) {
+        validate(row, col);
         return opened[xyTo1D(col, row)];
     }
 
