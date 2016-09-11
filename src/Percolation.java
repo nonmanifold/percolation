@@ -38,8 +38,10 @@ public class Percolation {
             sites.union(sites.find(bottomVirtualSite), sites.find(xy));
         }
         for (int[] direction : DIRECTIONS) {
-            int xy1 = xyTo1D(col + direction[0], row + direction[1]);
-            if (xy1 >= 1 && xy1 <= size1D && opened[xy1]) {
+            int col1 = col + direction[0];
+            int row1 = row + direction[1];
+            int xy1 = xyTo1D(col1, row1);
+            if (isInside(row1, col1) && opened[xy1]) {
                 sites.union(sites.find(xy), sites.find(xy1));
             }
         }
@@ -66,12 +68,13 @@ public class Percolation {
         return x + (y - 1) * size;
     }
 
+    private boolean isInside(int row, int col) {
+        return !(row < 1 || row > size || col < 1 || col > size);
+    }
+
     private void validate(int row, int col) {
-        if (row < 1 || row > size) {
-            throw new IndexOutOfBoundsException("row index " + row + " out of bounds");
-        }
-        if (col < 1 || col > size) {
-            throw new IndexOutOfBoundsException("col index " + col + " out of bounds");
+        if (!isInside(row, col)) {
+            throw new IndexOutOfBoundsException("row index or col index is out of bounds");
         }
     }
 }
