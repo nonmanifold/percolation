@@ -13,9 +13,9 @@ public class PercolationStats {
         int n = Integer.parseInt(args[0]);
         int trials = Integer.parseInt(args[1]);
         PercolationStats stats = new PercolationStats(n, trials);
-        StdOut.printf("mean                    = %d", stats.mean());
-        StdOut.printf("stddev                  = %d", stats.stddev());
-        StdOut.printf("95% confidence interval = %d, %d", stats.confidenceLo(), stats.confidenceHi());
+        StdOut.printf("mean                    = %f\n", stats.mean());
+        StdOut.printf("stddev                  = %f\n", stats.stddev());
+        StdOut.printf("95%% confidence interval = %f %f\n", stats.confidenceLo(), stats.confidenceHi());
     }
 
     // perform trials independent experiments on an n-by-n grid
@@ -38,7 +38,7 @@ public class PercolationStats {
         Percolation perc = new Percolation(n);
         int xi = 0;
         // initialize an array of two-element arrays with all the fillable cells indecies
-        int[][] canBeBloked = new int[n * n][];
+        int[][] canBeBloked = new int[n2][];
         for (int row = 0; row < n; row++) {
             for (int col = 0; col < n; col++) {
                 canBeBloked[row * n + col] = new int[]{row + 1, col + 1};
