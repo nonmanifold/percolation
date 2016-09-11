@@ -27,6 +27,9 @@ public class Percolation {
     public void open(int row, int col) {
         validate(row, col);
         final int xy = xyTo1D(col, row);
+        if(opened[xy]){
+            return;
+        }
         opened[xy] = true;
         if (row == 1) {
             sites.union(sites.find(topVirtualSite), sites.find(xy));
