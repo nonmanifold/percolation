@@ -1,4 +1,3 @@
-package pro.manifold.percolation;
 /******************************************************************************
  *  Compilation:  javac PercolationVisualizer.java
  *  Execution:    java PercolationVisualizer input.txt

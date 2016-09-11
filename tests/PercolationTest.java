@@ -1,8 +1,9 @@
-package pro.manifold.percolation;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import static org.junit.Assert.*;
 
@@ -11,10 +12,13 @@ public class PercolationTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void xyTo1D(){
+    public void xyTo1D() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Percolation perc = new Percolation(10);
-        assertEquals("xyTo1D(1, 1) should return 1", 1, perc.xyTo1D(1, 1));
-        assertEquals("xyTo1D(10, 10) should return 100", 100, perc.xyTo1D(10, 10));
+
+        Method xyTo1D = perc.getClass().getDeclaredMethod("xyTo1D", int.class, int.class);
+        xyTo1D.setAccessible(true);
+        assertEquals("xyTo1D(1, 1) should return 1", 1, xyTo1D.invoke(perc, 1, 1));
+        assertEquals("xyTo1D(10, 10) should return 100", 100, xyTo1D.invoke(perc, 10, 10));
     }
 
     @Test

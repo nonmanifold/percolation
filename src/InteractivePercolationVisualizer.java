@@ -1,4 +1,3 @@
-package pro.manifold.percolation;
 /******************************************************************************
  *  Compilation:  javac InteractivePercolationVisualizer.java
  *  Execution:    java InteractivePercolationVisualizer n

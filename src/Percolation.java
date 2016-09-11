@@ -1,5 +1,3 @@
-package pro.manifold.percolation;
-
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -59,7 +57,7 @@ public class Percolation {
         return opened[xyTo1D(col, row)];
     }
 
-    protected int xyTo1D(int x, int y) {
+    private int xyTo1D(int x, int y) {
         return x + (y - 1) * size;
     }
 
