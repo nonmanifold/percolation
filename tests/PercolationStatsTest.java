@@ -11,13 +11,13 @@ public class PercolationStatsTest {
     @Test
     public void throwOnIlligalN() throws Exception {
         thrown.expect(IllegalArgumentException.class);
-        PercolationStats stats = new PercolationStats(0, 100);
+        new PercolationStats(0, 100);
     }
 
     @Test
     public void throwOnIlligalTrials() throws Exception {
         thrown.expect(IllegalArgumentException.class);
-        PercolationStats stats = new PercolationStats(10, 0);
+        new PercolationStats(10, 0);
     }
 
     @Test

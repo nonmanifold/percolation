@@ -24,7 +24,7 @@ public class PercolationTest {
     @Test
     public void throwOnIlligalN() throws Exception {
         thrown.expect(IllegalArgumentException.class);
-        Percolation perc = new Percolation(0);
+        new Percolation(0);
     }
 
     @Test

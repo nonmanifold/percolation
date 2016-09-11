@@ -7,14 +7,6 @@ public class PercolationStats {
     private final int n;
     private final int n2;
 
-    public static void main(String[] args) {
-        int n = Integer.parseInt(args[0]);
-        int trials = Integer.parseInt(args[1]);
-        PercolationStats stats = new PercolationStats(n, trials);
-        StdOut.printf("mean                    = %f\n", stats.mean());
-        StdOut.printf("stddev                  = %f\n", stats.stddev());
-        StdOut.printf("95%% confidence interval = %f %f\n", stats.confidenceLo(), stats.confidenceHi());
-    }
 
     // perform trials independent experiments on an n-by-n grid
     public PercolationStats(int n, int trials) {
@@ -30,6 +22,15 @@ public class PercolationStats {
         for (int t = 0; t < trials; t++) {
             xis[t] = fillTillPercolates();
         }
+    }
+
+    public static void main(String[] args) {
+        int n = Integer.parseInt(args[0]);
+        int trials = Integer.parseInt(args[1]);
+        PercolationStats stats = new PercolationStats(n, trials);
+        StdOut.printf("mean                    = %f\n", stats.mean());
+        StdOut.printf("stddev                  = %f\n", stats.stddev());
+        StdOut.printf("95%% confidence interval = %f %f\n", stats.confidenceLo(), stats.confidenceHi());
     }
 
     private double fillTillPercolates() {
@@ -52,7 +53,7 @@ public class PercolationStats {
             canBeBloked[siteToFillIdx] = canBeBloked[canBeBlokedCount - 1];
             canBeBlokedCount--; // move pointer to the working set far end
             perc.open(row, col);
-            xi++;// advance counter
+            xi++; // advance counter
         }
         return xi / (double) n2;
     }

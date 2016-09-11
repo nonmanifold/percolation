@@ -2,12 +2,12 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
 
+    private static final int[][] DIRECTIONS = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     private final WeightedQuickUnionUF sites;
     private final int size;
     private final boolean[] opened;
     private final int topVirtualSite;
     private final int bottomVirtualSite;
-    private static final int[][] DIRECTIONS = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     private final int size1D;
 
     // create n-by-n grid, with all sites blocked
@@ -27,7 +27,7 @@ public class Percolation {
     public void open(int row, int col) {
         validate(row, col);
         final int xy = xyTo1D(col, row);
-        if(opened[xy]){
+        if (opened[xy]) {
             return;
         }
         opened[xy] = true;
