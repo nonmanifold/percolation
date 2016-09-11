@@ -9,7 +9,7 @@ public class Percolation {
     private final boolean[] opened;
     private final int topVirtualSite;
     private final int bottomVirtualSite;
-    private static final int[][] DIRECTIONS = new int[][]{{0, 1}, {0, -1}, {1, 1}, {-1, -1}};
+    private static final int[][] DIRECTIONS = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     private final int size1D;
 
     public Percolation(int n) {
@@ -29,14 +29,15 @@ public class Percolation {
         final int xy = xyTo1D(col, row);
         opened[xy] = true;
         if (row == 1) {
-            sites.union(topVirtualSite, xy);
-        } else if (row == size) {
-            sites.union(bottomVirtualSite, xy);
+            sites.union(sites.find(topVirtualSite), sites.find(xy));
+        }
+        if (row == size) {
+            sites.union(sites.find(bottomVirtualSite), sites.find(xy));
         }
         for (int[] direction : DIRECTIONS) {
             int xy1 = xyTo1D(col + direction[0], row + direction[1]);
-            if (xy1 > 1 && xy1 < size1D && opened[xy1]) {
-                sites.union(xy, xy1);
+            if (xy1 >= 1 && xy1 <= size1D && opened[xy1]) {
+                sites.union(sites.find(xy), sites.find(xy1));
             }
         }
     }
